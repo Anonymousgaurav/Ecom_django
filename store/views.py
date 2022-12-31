@@ -7,5 +7,4 @@ from .models.product import Product
 
 def dummydata(request):
     products = Product.get_all_products()
-    print(products)
-    return render(request, 'orders/orders.html', {'products': products})
+    return render(request, 'index.html', {'products': products})
