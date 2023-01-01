@@ -20,18 +20,9 @@ def homepage(request):
     # return render(request, 'index.html', {'products': products}, {'categories': categories})
     return render(request, 'index.html', data)
 
+
 def signup(request):
-    products = None
-    categories = Category.get_all_categories()
-    categoryID = request.GET.get('category')
-    if categoryID:
-        products = Product.get_all_products_by_id(categoryID)
+    if request.method == 'GET':
+        return render(request, 'signup.html')
     else:
-        products = Product.get_all_products()
-
-    data = {}
-    data['products'] = products
-    data['categories'] = categories
-    # return render(request, 'index.html', {'products': products}, {'categories': categories})
-    return render(request, 'signup.html', data)
-
+        return HttpResponse(request.POST)
