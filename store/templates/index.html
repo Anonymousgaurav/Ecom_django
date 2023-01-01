@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<!--body -->
+
+
+<div class="container-fluid mt-5">
+
+    <div class="row">
+
+        <!-- filter -->
+
+
+        <!-- col-lg-3 means we are diving the screen & we are trying to get a space 1/3 -->
+        <div class="col-lg-3 mx-auto">
+            <div class="list-group">
+
+                <a href="/" class="list-group-item list-group-item-action"> All Products</a>
+
+                {% for category in categories %}
+                <a class="list-group-item list-group-item-action" href="/?category={{category.id}}">{{category.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- all products -->
+
+
+        <div class="col-lg-9 mx-auto" id='products'>
+            <div class="row mx-auto">
+                {% for product in products %}
+
+                <div>
+                    <div class="card mx-auto mb-3 me-5" style="width: 18rem;">
+                        <img alt="Card image cap" class="card-img-top" src="{{ product.image.url }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                            <a class="btn btn-light border btn-sm" href="#">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock%}
