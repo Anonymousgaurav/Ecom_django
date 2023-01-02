@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models.product import Product, Category
 from .models.customer import Customer
@@ -35,4 +35,4 @@ def signup(request):
         print(first_name, last_name, phone, email, password)
         customer = Customer(first_name=first_name, last_name=last_name, phone=phone, email=email, password=password)
         customer.register()
-        return HttpResponse("Signup Success")
+        return redirect('homepage')
