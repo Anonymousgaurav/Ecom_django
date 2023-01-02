@@ -10,37 +10,37 @@
                 {% csrf_token%}
                 <div class="form-group">
                     <label for="">First Name</label>
-                    <input class="form-control" placeholder="First Name" type="firstname">
+                    <input class="form-control form-control-sm" type="text" name="firstname" id="firstname">
                 </div>
 
                 <!-- second name -->
 
                 <div class="form-group">
                     <label for="">Last Name</label>
-                    <input class="form-control" placeholder="Last Name" type="lastname">
+                    <input type="text" name="lastname" id="lastname" class="form-control form-control-sm">
                 </div>
 
 
                 <!-- Phone number -->
 
-                <div class="form-group">
+              <div class="form-group">
                     <label for="">Phone</label>
-                    <input class="form-control" placeholder="+910123456789" type="phone">
+                    <input type="text" name="phone" id="phone" class="form-control form-control-sm" placeholder="56565678787">
                 </div>
 
 
                 <!-- email -->
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1"
+                    <label for="">Email</label>
+                    <input name="email" aria-describedby="emailHelp" class="form-control-sm form-control" id="email"
                            placeholder="Enter email" type="email">
                 </div>
 
                 <!-- password -->
 
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
+                    <label for="">Password</label>
+                    <input class="form-control form-control-sm" id="password" placeholder="Password" type="password" name="password">
                 </div>
 
 
