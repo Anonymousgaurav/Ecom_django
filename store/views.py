@@ -34,5 +34,10 @@ def signup(request):
         password = postData.get('password')
         print(first_name, last_name, phone, email, password)
         customer = Customer(first_name=first_name, last_name=last_name, phone=phone, email=email, password=password)
-        customer.register()
-        return redirect('homepage')
+        isExists = customer.isExists()
+        if isExists:
+            error_message = "Email Address already Exists"
+            return HttpResponse(error_message)
+        else:
+            customer.register()
+            return redirect('homepage')
