@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models.product import Product, Category
 from .models.customer import Customer
+from django.contrib.auth.hashers import make_password, check_password
 
 
 # Create your views here.
@@ -39,5 +40,6 @@ def signup(request):
             error_message = "Email Address already Exists"
             return HttpResponse(error_message)
         else:
+            customer.password = make_password(customer.password)
             customer.register()
             return redirect('homepage')
