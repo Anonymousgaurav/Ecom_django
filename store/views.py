@@ -43,3 +43,21 @@ def signup(request):
             customer.password = make_password(customer.password)
             customer.register()
             return redirect('homepage')
+
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        customer = Customer.get_customer_details(email)
+        if customer:
+            flag = check_password(password, customer.password)
+            if flag:
+                return redirect('homepage')
+            else:
+                return HttpResponse("Your Password is wrong")
+
+        else:
+            return HttpResponse("Check your login details")
