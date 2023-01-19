@@ -3,10 +3,10 @@ from django.http import HttpResponse
 from .models.product import Product, Category
 from .models.customer import Customer
 from django.contrib.auth.hashers import make_password, check_password
+from django.views import View
 
 
-# Create your views here.
-
+# Create your views here
 def homepage(request):
     products = None
     categories = Category.get_all_categories()
@@ -23,10 +23,11 @@ def homepage(request):
     return render(request, 'index.html', data)
 
 
-def signup(request):
-    if request.method == 'GET':
+class SignUp(View):
+    def get(self, request):
         return render(request, 'signup.html')
-    else:
+
+    def post(self, request):
         postData = request.POST
         first_name = postData.get('firstname')
         last_name = postData.get('lastname')
@@ -45,10 +46,15 @@ def signup(request):
             return redirect('homepage')
 
 
-def login(request):
-    if request.method == 'GET':
+class Login(View):
+    # overiding get method in class based view
+    # code to handle get responses
+    def get(self, request):
         return render(request, 'login.html')
-    else:
+
+    # overiding post method in class based view
+    # code to handle post responses
+    def post(self, request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         customer = Customer.get_customer_details(email)
