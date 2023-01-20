@@ -21,7 +21,8 @@
                 <a href="/" class="list-group-item list-group-item-action"> All Products</a>
 
                 {% for category in categories %}
-                <a class="list-group-item list-group-item-action" href="/?category={{category.id}}">{{category.name}}</a>
+                <a class="list-group-item list-group-item-action"
+                   href="/?category={{category.id}}">{{category.name}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -39,7 +40,16 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.description }}</p>
-                            <a class="btn btn-light border btn-sm" href="#">Add to cart</a>
+
+                            <form action="/" method="POST">
+                                {% csrf_token %}
+                                <input hidden type="text" name = 'product' value="{{product.id}}">
+                                <input class="float-right btn btn-light border btn-sm" href="#" type="submit" value="Add To Cart" >
+
+
+                            </form>
+
+
                         </div>
                     </div>
                 </div>
