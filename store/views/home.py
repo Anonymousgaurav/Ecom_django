@@ -22,4 +22,5 @@ def homepage(request):
     data['products'] = products
     data['categories'] = categories
     # return render(request, 'index.html', {'products': products}, {'categories': categories})
+    print('You are :', request.session.get('customer_email'))
     return render(request, 'index.html', data)
