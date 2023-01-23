@@ -1,55 +1,48 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
-
+{% load cart %}
 
 <!--body -->
-
-
 <div class="container-fluid mt-5">
-
     <div class="row">
-
         <!-- filter -->
-
-
         <!-- col-lg-3 means we are diving the screen & we are trying to get a space 1/3 -->
         <div class="col-lg-3 mx-auto">
             <div class="list-group">
-
                 <a href="/" class="list-group-item list-group-item-action"> All Products</a>
-
                 {% for category in categories %}
                 <a class="list-group-item list-group-item-action"
                    href="/?category={{category.id}}">{{category.name}}</a>
                 {% endfor %}
             </div>
         </div>
-
         <!-- all products -->
-
-
         <div class="col-lg-9 mx-auto" id='products'>
             <div class="row mx-auto">
                 {% for product in products %}
-
                 <div>
                     <div class="card mx-auto mb-3 me-5" style="width: 18rem;">
                         <img alt="Card image cap" class="card-img-top" src="{{ product.image.url }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description }}</p>
-
-                            <form action="/" method="POST">
+                            <p class="card-text">{{ product.price }}</p>
+<!--                            {{ product | is_in_cart:request.session.cart }}-->
+                        </div>
+                        <div class="card-footer p-0 no-gutters">
+                            {% if product|is_in_cart:request.session.cart%}
+                                                        <div class="row no-gutters">
+                                <input type="submit" value=" - " class="col-2 btn btn-block btn-secondary">
+                                <div class="text-center col"> 2 in Cart</div>
+                                <input type="submit" value=" + " class="col-2 btn btn-block btn-secondary">
+                            </div>
+                            {% else %}
+                            <form action="/" method="POST" class="btn-block">
                                 {% csrf_token %}
-                                <input hidden type="text" name = 'product' value="{{product.id}}">
-                                <input class="float-right btn btn-light border btn-sm" href="#" type="submit" value="Add To Cart" >
-
-
+                                <input hidden type="text" name='product' value="{{product.id}}">
+                                <input class="float-right btn btn-light border btn-sm" href="#" type="submit"
+                                       value="Add To Cart">
                             </form>
-
-
+                            {% endif %}
                         </div>
                     </div>
                 </div>
