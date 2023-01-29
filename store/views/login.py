@@ -22,11 +22,15 @@ class Login(View):
         if customer:
             flag = check_password(password, customer.password)
             if flag:
-                request.session['customer_id'] = customer.id
-                request.session['customer_email'] = customer.email
+                request.session['customer'] = customer.id
                 return redirect('homepage')
             else:
                 return HttpResponse("Your Password is wrong")
 
         else:
             return HttpResponse("Check your login details")
+
+
+def logout(request):
+    request.session.clear()
+    return redirect('login')
