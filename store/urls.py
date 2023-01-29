@@ -5,6 +5,7 @@ from .views.home import Index
 from .views.login import logout
 from .views.cart import Cart
 from .views.checkout import Checkout
+from .views.orders import OrderView
 
 urlpatterns = [
     path('', Index.as_view(), name='homepage'),
@@ -12,7 +13,8 @@ urlpatterns = [
     path('login', login.Login.as_view(), name='login'),
     path('logout', logout, name='logout'),
     path('cart', Cart.as_view(), name='cart'),
-    path('check-out', Checkout.as_view(), name='checkout')
+    path('check-out', Checkout.as_view(), name='checkout'),
+    path('orders', OrderView.as_view(), name='orders')
 ]
 
 
