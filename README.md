@@ -11,4 +11,6 @@ feature_104 ===>> Cart Functionality, Adding and removing items from cart
 
 feature_105 ===>> Cart Page, Orders Page, Cart Increment & decrement 
 
+feature_105 ===>> Bug fixing 
+
 
